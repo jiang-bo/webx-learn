@@ -568,6 +568,7 @@ webx2.5和2.0的请求处理流程有所不同，所以需要修改pipeline.xml
 该Action与2.0版的区别在于不继承任何父类
 ### 3.5 添加模板
 在templates/screen目录下新增一个hello/sayHi.vm模板
+
 	<html> 
 	<head>
 	<title>Hello!</title> 
@@ -576,6 +577,7 @@ webx2.5和2.0的请求处理流程有所不同，所以需要修改pipeline.xml
 	<h1>hello $name </h1>
 	</body>
 	</html>
+	
 ### 3.6 运行
 执行mvn jetty:run ，运行应用，访问
 <http://localhost:8080/webx-demo2.5/hello/sayHi.htm?name=jack>
