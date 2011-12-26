@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:aop="http://www.springframework.org/schema/aop" xmlns:lang="http://www.springframework.org/schema/lang"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.0.xsd">
+ 
+ 
+    <!-- 动态自动绑定依赖注入器.
+        autowireFilters设置了遇到 setter属性时哪些类的bean,才能被注入. -->
+        
+    <bean id="org.bamboo.springx.DynamicAutoWireInjector" class="org.bamboo.springx.DynamicAutoWireInjector">
+        <property name="autowireFilters">
+            <list>
+            </list>
+        </property>
+    </bean>
+</beans>

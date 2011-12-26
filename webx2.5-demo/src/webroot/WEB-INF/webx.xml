@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE configuration PUBLIC "-//ALIBABA//DTD Services Configuration V1.0//EN" "http://toolkit.alibaba-inc.com/dtd/toolkit/service/services.dtd">
+<configuration>
+	<services>
+		<service name="PipelineService">
+			<property name="pipeline.default.descriptor" value="/WEB-INF/pipeline.xml" />
+		</service>
+		<service name="ModuleLoaderService" class="com.alibaba.turbine.service.moduleloader.PojoModuleLoaderService">
+			<property name="module.factory">
+               <property name="default.class" value="com.alibaba.webx.service.moduleloader.PojoModuleFactory"/>
+            </property>
+			<property name="module.packages">
+				<value>org.coderj.webx.demo.web</value>
+			</property>
+		</service>
+		<service name="BeanFactoryService" class="com.alibaba.service.spring.SpringxBeanFactoryService">
+            <property name="bean.descriptors">
+                <value>/classpath/applicationContext.xml</value>
+            </property>
+        </service>
+		<service name="MappingService" class="com.alibaba.turbine.service.mapping.DefaultMappingService">
+            <property name="mapper.action">
+                <property name="class" value="com.alibaba.webx.service.mapping.mapper.CompatibleActionDirectModuleMapper"/>
+            </property>
+            <property name="mapper.screen.notemplate">
+                <property name="class" value="com.alibaba.webx.service.mapping.mapper.CompatibleScreenDirectModuleMapper"/>
+            </property>
+            <property name="mapper.screen">
+                <property name="class" value="com.alibaba.webx.service.mapping.mapper.CompatibleScreenFallbackModuleMapper"/>
+                <property name="default" value="TemplateScreen"/>
+            </property>
+            <property name="mapper.screen.template">
+                <property name="class" value="com.alibaba.turbine.service.mapping.mapper.DirectTemplateMapper"/>
+                <property name="prefix" value="screen"/>
+            </property>
+            <property name="mapper.layout">
+                <property name="class" value="com.alibaba.webx.service.mapping.mapper.CompatibleLayoutFallbackModuleMapper"/>
+                <property name="default" value="TemplateLayout"/>
+            </property>
+            <property name="mapper.layout.template">
+                <property name="class" value="com.alibaba.turbine.service.mapping.mapper.FallbackTemplateMapper"/>
+                <property name="prefix" value="layout"/>
+            </property>
+            <property name="mapper.control.notemplate">
+                <property name="class" value="com.alibaba.webx.service.mapping.mapper.CompatibleControlDirectModuleMapper"/>
+            </property>
+            <property name="mapper.control">
+                <property name="class" value="com.alibaba.webx.service.mapping.mapper.CompatibleControlFallbackModuleMapper"/>
+                <property name="default" value="TemplateControl"/>
+            </property>
+            <property name="mapper.control.template">
+                <property name="class" value="com.alibaba.turbine.service.mapping.mapper.DirectTemplateMapper"/>
+                <property name="prefix" value="control"/>
+            </property>
+        </service>
+	</services>
+</configuration>

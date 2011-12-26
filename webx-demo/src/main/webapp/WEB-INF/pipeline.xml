@@ -1,0 +1,32 @@
+<pipeline>
+	<valve class="com.alibaba.service.pipeline.TryCatchFinallyValve">
+		<try>
+			<valve class="com.alibaba.turbine.pipeline.SetLoggingContextValve" />
+			<valve class="com.alibaba.turbine.pipeline.SetLocaleValve"
+				defaultLocale="zh_CN" defaultCharset="GBK" />
+			<valve class="com.alibaba.turbine.pipeline.AnalyzeURLValve" />
+			<valve class="com.alibaba.turbine.pipeline.ChooseValve" label="processModule">
+				<when extension="jsp, vm">
+					<valve class="com.alibaba.turbine.pipeline.PerformActionValve"
+						actionParam="action" />
+					<valve class="com.alibaba.turbine.pipeline.PerformScreenTemplateValve" />
+				</when>
+				<when extension="do">
+					<valve class="com.alibaba.turbine.pipeline.PerformActionValve"
+						actionParam="action" />
+					<valve class="com.alibaba.turbine.pipeline.PerformScreenValve" />
+				</when>
+			</valve>
+			<valve class="com.alibaba.turbine.pipeline.RedirectTargetValve"
+				goto="processModule" />
+		</try>
+		<catch>
+			<valve target="error.vm" class="com.alibaba.turbine.pipeline.SetErrorPageValve" />
+			<valve class="com.alibaba.turbine.pipeline.PerformScreenTemplateValve" />
+		</catch>
+		<finally>
+			<valve class="com.alibaba.turbine.pipeline.SetLoggingContextValve"
+				action="cleanup" />
+		</finally>
+	</valve>
+</pipeline>

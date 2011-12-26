@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE configuration PUBLIC "-//ALIBABA//DTD Services Configuration V1.0//EN" "http://toolkit.alibaba-inc.com/dtd/toolkit/service/services.dtd">
+<configuration>
+	<services>
+		<service name="PipelineService">
+			<property name="pipeline.default.descriptor" value="/WEB-INF/pipeline.xml" />
+		</service>
+		<service name="ModuleLoaderService">
+			<property name="module.packages">
+				<value>org.coderj.webx.demo.web</value>
+			</property>
+		</service>
+	</services>
+</configuration>

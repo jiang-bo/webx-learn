@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "http://toolkit.alibaba-inc.com/dtd/log4j/log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/"> <!-- =================================================================== 
+		== -->
+	<!-- 以下是appender的定义 -->
+	<!-- =================================================================== 
+		== -->
+	<appender name="WORKSHOP" class="org.apache.log4j.FileAppender">
+		<param name="file" value="${loggingRoot}/${localHost}/workshop.log" />
+		<param name="append" value="false" />
+		<param name="encoding" value="GB2312" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d [%X{requestURIWithQueryString}] %-5p %c{2} - %m
+%n" />
+		</layout>
+	</appender>
+	<appender name="WORKSHOP-ERROR" class="org.apache.log4j.ConsoleAppender">
+		<param name="target" value="System.err" />
+		<param name="encoding" value="GB2312" />
+		<param name="threshold" value="warn" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d [%X{requestURIWithQueryString}] %-5p %c{2} - %m %n" />
+		</layout>
+	</appender>
+	<appender name="RESOURCE" class="org.apache.log4j.FileAppender">
+		<param name="file" value="${loggingRoot}/${localHost}/workshop-resource.log" />
+		<param name="append" value="false" />
+		<param name="encoding" value="GB2312" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d [%X{requestURIWithQueryString}] %-5p %c{2} - %m %n" />
+		</layout>
+	</appender>
+	<appender name="FILTER" class="org.apache.log4j.FileAppender">
+		<param name="file" value="${loggingRoot}/${localHost}/workshop-filter.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GB2312" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+	<appender name="APACHE" class="org.apache.log4j.FileAppender">
+		<param name="file" value="${loggingRoot}/${localHost}/workshop-apache.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GB2312" />
+		<layout class="org.apache.log4j.PatternLayout">
+			￼￼￼
+			<param name="ConversionPattern"
+				value="%d [%X{requestURIWithQueryString}] %-5p %c{2} - %m %n" />
+		</layout>
+	</appender>
+	<appender name="VELOCITY" class="org.apache.log4j.FileAppender">
+		<param name="file" value="${loggingRoot}/${localHost}/workshop-velocity.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GB2312" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+	<!-- =================================================================== 
+		== -->
+	<!-- 以下是logger的定义 -->
+	<!-- =================================================================== 
+		== -->
+	<logger name="com.alibaba.webx.filter" additivity="false">
+		<level value="WARN" />
+		<appender-ref ref="FILTER" />
+	</logger>
+	<logger name="com.alibaba.service.VelocityService" additivity="false">
+		<level value="WARN" />
+		<appender-ref ref="VELOCITY" />
+	</logger>
+	<logger name="com.alibaba.service.resource" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="RESOURCE" />
+	</logger>
+	<logger name="com.alibaba.service.ResourceLoaderService"
+		additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="RESOURCE" />
+	</logger>
+	<logger name="org.apache.commons.beanutils">
+		<level value="error" />
+	</logger>
+	<logger name="org.apache.commons.digester">
+		<level value="error" />
+	</logger>
+	<logger name="org.apache" additivity="false">
+		<level value="WARN" />
+		<appender-ref ref="APACHE" />
+	</logger>
+	<!-- =================================================================== 
+		== -->
+	<!-- Rootlogger的定义 -->
+	￼
+	<!-- =================================================================== 
+		== -->
+	<root>
+		<level value="DEBUG" />
+		<appender-ref ref="WORKSHOP" />
+		<appender-ref ref="WORKSHOP-ERROR" />
+	</root>
+</log4j:configuration>
