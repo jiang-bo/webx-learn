@@ -577,7 +577,9 @@ webx2.5和2.0的请求处理流程有所不同，所以需要修改pipeline.xml
 	</body>
 	</html>
 ### 3.6 运行
-执行mvn jetty:run ，运行应用，访问<http://localhost:8080/webx-demo2.5/hello/sayHi.htm?name=jack>看看效果吧
+执行mvn jetty:run ，运行应用，访问
+<http://localhost:8080/webx-demo2.5/hello/sayHi.htm?name=jack>
+看看效果吧
 	
 ## 四、参考文档
 
